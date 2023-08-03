@@ -90,7 +90,7 @@ class SettingsDialog(QDialog):
 
     @Slot()
     def handle_settings_changed(self):
-        self.ui.button_box.button(QDialogButtonBox.ButtonRole.Apply).setEnabled(True)
+        self.ui.button_box.button(QDialogButtonBox.StandardButton.Apply).setEnabled(True)
 
     def accept(self):
         self.settings_saved.emit()
@@ -98,7 +98,7 @@ class SettingsDialog(QDialog):
 
     def apply(self):
         self.settings_saved.emit()
-        self.ui.button_box.button(QDialogButtonBox.ButtonRole.Apply).setEnabled(False)
+        self.ui.button_box.button(QDialogButtonBox.StandardButton.Apply).setEnabled(False)
 
     def connect_settings_widget_list(self, settings_widget_list: list):
         """Connects widgets `valueChanged` type Signals to `settings_changed` Signal"""

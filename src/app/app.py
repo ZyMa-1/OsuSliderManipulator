@@ -13,7 +13,7 @@ def run(args):
     app = QApplication(args)
 
     app_name = "Slider manipulator"
-    app_ver = "0.1"
+    app_ver = "1.0"
 
     app.setOrganizationName(app_name)
     app.setApplicationName(app_name)
