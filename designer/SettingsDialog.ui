@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SettingsDialog</class>
+ <widget class="QDialog" name="SettingsDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>497</width>
+    <height>313</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Settings</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="modal">
+   <bool>false</bool>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3">
+   <item row="0" column="0">
+    <layout class="QGridLayout" name="gridLayout">
+     <property name="bottomMargin">
+      <number>10</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QListWidget" name="side_menu_list">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="currentRow">
+        <number>0</number>
+       </property>
+       <property name="sortingEnabled">
+        <bool>false</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>General</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Sliders v1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Sliders v2</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QStackedWidget" name="stacked_widget">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="page">
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_6">
+           <property name="verticalSpacing">
+            <number>8</number>
+           </property>
+           <item row="2" column="0">
+            <spacer name="verticalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>5</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="3" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <property name="sizeConstraint">
+              <enum>QLayout::SetDefaultConstraint</enum>
+             </property>
+             <item>
+              <widget class="QLineEdit" name="osu_folder_path_line_edit">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="choose_osu_folder_btn">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>35</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>...</string>
+               </property>
+               <property name="autoExclusive">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_2">
+             <property name="font">
+              <font>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Osu folder path:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="Line" name="line_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QCheckBox" name="always_stay_on_top_check_box">
+             <property name="font">
+              <font>
+               <pointsize>16</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label">
+             <property name="font">
+              <font>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Main widget always stay on top:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_16">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <family>Segoe UI</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>General</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="1" column="0">
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="page_3">
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_8">
+           <property name="sizeConstraint">
+            <enum>QLayout::SetDefaultConstraint</enum>
+           </property>
+           <property name="verticalSpacing">
+            <number>8</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_18">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <family>Segoe UI</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Sliders v1</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <property name="sizeConstraint">
+              <enum>QLayout::SetDefaultConstraint</enum>
+             </property>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <item>
+                <widget class="QRadioButton" name="slidesrv1_save_fields_yes_radio_button">
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Yikes</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="slidersv1_save_fields_no_radio_button">
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Nein</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <widget class="Line" name="line_4">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <spacer name="verticalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>5</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="4" column="0" colspan="2">
+            <spacer name="verticalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="font">
+              <font>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Save fields:</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="page_2">
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_9">
+           <property name="sizeConstraint">
+            <enum>QLayout::SetDefaultConstraint</enum>
+           </property>
+           <property name="verticalSpacing">
+            <number>8</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_19">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <family>Segoe UI</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Sliders v2</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <property name="sizeConstraint">
+              <enum>QLayout::SetDefaultConstraint</enum>
+             </property>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_7">
+               <item>
+                <widget class="QRadioButton" name="slidesrv2_save_fields_yes_radio_button">
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Yikes</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="slidersv2_save_fields_no_radio_button">
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Nein</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <widget class="Line" name="line_5">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <spacer name="verticalSpacer_7">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>5</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="4" column="0" colspan="2">
+            <spacer name="verticalSpacer_8">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="font">
+              <font>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Save fields:</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <widget class="QDialogButtonBox" name="button_box">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
