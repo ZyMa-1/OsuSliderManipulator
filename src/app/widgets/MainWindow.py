@@ -2,19 +2,17 @@ import pathlib
 import subprocess
 
 from PySide6.QtCore import Slot, QObject, Qt
-from PySide6.QtGui import QIntValidator, QDoubleValidator
+from PySide6.QtGui import QIntValidator, QDoubleValidator, QIcon
 from PySide6.QtWidgets import QMainWindow, QFileDialog
 
+from .AboutDialog import AboutDialog
+from .SettingsDialog import SettingsDialog
 from src.app.ui.Ui_MainWindow import Ui_MainWindow
-from src.app.widgets.AboutDialog import AboutDialog
-from src.app.widgets.HowToUserThisDialog import HowToUseThisDialog
-from src.app.widgets.SettingsDialog import SettingsDialog
 from src.app_backend.SettingsManager import SettingsManager
 from src.app_backend.slider_convertor_module.SliderConvertor import SliderConvertor
 
 
 def delete_empty_lines(text: str) -> str:
-    """ChatGPT write that, not responsible for that"""
     lines = text.splitlines()
     non_empty_lines = [line for line in lines if line.strip()]
     result = '\n'.join(non_empty_lines)
@@ -63,7 +61,6 @@ class MainWindow(QMainWindow):
 
         # Connect actions
         self.ui.action_about.triggered.connect(self.show_about_dialog)
-        self.ui.action_how_to_use_this.triggered.connect(self.show_how_to_use_this_dialog)
         self.ui.action_settings.triggered.connect(self.show_settings_dialog)
 
     @Slot()
@@ -75,12 +72,6 @@ class MainWindow(QMainWindow):
     @Slot()
     def show_settings_dialog(self):
         dialog = SettingsDialog(parent=self)
-        dialog.setModal(True)
-        dialog.show()
-
-    @Slot()
-    def show_how_to_use_this_dialog(self):
-        dialog = HowToUseThisDialog(parent=self)
         dialog.setModal(True)
         dialog.show()
 

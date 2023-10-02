@@ -66,8 +66,6 @@ class Ui_AboutDialog(object):
         self.retranslateUi(AboutDialog)
         self.button_box.rejected.connect(AboutDialog.reject)
         self.button_box.accepted.connect(AboutDialog.accept)
-
-        QMetaObject.connectSlotsByName(AboutDialog)
     # setupUi
 
     def retranslateUi(self, AboutDialog):

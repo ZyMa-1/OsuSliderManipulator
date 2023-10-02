@@ -1,15 +1,19 @@
 import copy
+import logging
 import pathlib
 from typing import Tuple, List
 
 from OsuFileParser import BeatmapFileParser, BeatmapData
 from OsuFileParser.my_dataclasses.SliderObject import SliderObject
 from OsuFileParser.my_dataclasses.TimingPoint import TimingPoint
+
 from src.app_backend.slider_convertor_module.parsers.SliderDataParser import SliderDataParser
 from src.app_backend.slider_convertor_module.parsers.TimingDataParser import TimingDataParser
 
+logger = logging.getLogger(__name__)
 
-def _timing_sort_key(timing_str: str):
+
+def _timing_sort_key_ascending(timing_str: str):
     """Key to sort timing by 'time' and 'uninherited' in ascending order"""
     vals = timing_str.split(',')
     return int(vals[0]), int(vals[6])
@@ -29,15 +33,21 @@ def _create_timing_point_str(*, time: int, beat_length: float, uninherited: bool
 
 def _arrange_slider(*, slider_tick_rate: float, beat_length: float, beatmap_sv: float, current_sv_multiplier: float,
                     new_end_ms: int, slider: SliderObject, timing_example: TimingPoint = None) -> (str, str):
-    """Arranges slider, tries to include ZERO slider ticks in it."""
+    """
+    Arranges slider, tries to include ZERO slider ticks in it.
+    Returns 2 timing points as a strings.
+    """
     start_ms = slider.time
     slider_length = slider.length
+
     old_slider_completion_time = slider_length / (100 * beatmap_sv * current_sv_multiplier) * beat_length
     new_slider_completion_time = new_end_ms - start_ms
+
     new_sv_multiplier = slider_tick_rate
-    new_beat_length = new_slider_completion_time / old_slider_completion_time * \
-                      beat_length * current_sv_multiplier / new_sv_multiplier
-    # Avoiding slider ticks
+    new_beat_length = beat_length * (new_slider_completion_time / old_slider_completion_time) * \
+                      (new_sv_multiplier / current_sv_multiplier)
+
+    # Avoiding ANY slider ticks
     expected_slider_ticks = (new_end_ms - start_ms) * slider_tick_rate / new_beat_length
     if expected_slider_ticks > 1:
         new_beat_length *= expected_slider_ticks
@@ -68,18 +78,13 @@ class SliderConvertor:
         :return: Returns Tuple of inherited and inherited timing point as strings, specifying only beat length,
                  uninherited values.
         """
-        if timing_example_data == "":
-            slider = SliderDataParser.parse_slider_data(slider_data)
-            return _arrange_slider(slider_tick_rate=slider_tick_rate, new_end_ms=destination_ms,
-                                   beat_length=beat_length, beatmap_sv=beatmap_sv,
-                                   current_sv_multiplier=current_sv_multiplier, slider=slider)
-        else:
-            slider = SliderDataParser.parse_slider_data(slider_data)
-            timing_example = TimingDataParser.parse_timing_point(timing_example_data)
-            return _arrange_slider(slider_tick_rate=slider_tick_rate, new_end_ms=destination_ms,
-                                   beat_length=beat_length, beatmap_sv=beatmap_sv,
-                                   current_sv_multiplier=current_sv_multiplier, slider=slider,
-                                   timing_example=timing_example)
+        slider = SliderDataParser.parse_slider_data(slider_data)
+        return _arrange_slider(slider_tick_rate=slider_tick_rate, new_end_ms=destination_ms,
+                               beat_length=beat_length, beatmap_sv=beatmap_sv,
+                               current_sv_multiplier=current_sv_multiplier, slider=slider,
+                               timing_example=(
+                                   None if timing_example_data == "" else TimingDataParser.parse_timing_point(
+                                       timing_example_data)))
 
     @staticmethod
     def convert_sliders(*, slider_tick_rate: float, beat_length: float, beatmap_sv: float, current_sv_multiplier: float,
@@ -96,7 +101,7 @@ class SliderConvertor:
                                                     slider_data=slider_data, timing_example_data=timing_example_data)
             res.append(t1)
             res.append(t2)
-        res.sort(key=_timing_sort_key)
+        res.sort(key=_timing_sort_key_ascending)
         return res
 
     @staticmethod
@@ -113,12 +118,16 @@ class SliderConvertor:
         beatmap_sv = float(beatmap_data.difficulty.slider_multiplier)
 
         timing_points_list = beatmap_data.timing_points
-        cur_ind = 0  # pointer to the index of the timing list where time >= slider start time.
-        beat_length = None
-        current_sv_multiplier = 1
-        timing_example = None
+
+        cur_ind = 0  # pointer to the index of the timing list where: (time) >= (slider start time).
+        beat_length = None  # current beat_length for a current slider
+        current_sv_multiplier = 1  # current_sv_multiplier for a current slider
+        timing_example = None  # current timing point
+
         for slider_data in sliders_data.splitlines():
             slider = SliderDataParser.parse_slider_data(slider_data)
+
+            # Scanning trough '.osu' file timing points to get the relevant data
             while cur_ind < len(timing_points_list) and timing_points_list[cur_ind].time <= slider.time:
                 if timing_points_list[cur_ind].uninherited:
                     beat_length = timing_points_list[cur_ind].beat_length
@@ -134,5 +143,5 @@ class SliderConvertor:
                                      slider=slider, timing_example=timing_example)
             res.append(t1)
             res.append(t2)
-        res.sort(key=_timing_sort_key)
+        res.sort(key=_timing_sort_key_ascending)
         return res

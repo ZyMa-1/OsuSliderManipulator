@@ -304,8 +304,6 @@ class Ui_SettingsDialog(object):
         self.side_menu_list.setCurrentRow(0)
         self.stacked_widget.setCurrentIndex(0)
 
-
-        QMetaObject.connectSlotsByName(SettingsDialog)
     # setupUi
 
     def retranslateUi(self, SettingsDialog):

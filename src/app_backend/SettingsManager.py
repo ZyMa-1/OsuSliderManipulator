@@ -1,6 +1,8 @@
 from PySide6.QtWidgets import QTextEdit
 from pyqtconfig import ConfigManager, unicode
 
+from src.PathManager import PathManager
+
 
 class _Singleton(type):
     """
@@ -33,7 +35,7 @@ class SettingsManager(metaclass=_Singleton):
 
     def __init__(self):
         # Create ConfigManagers
-        self.config = ConfigManager(filename="settings/config.json")  # stores settings info
+        self.config = ConfigManager(filename=f"{PathManager.SETTINGS_DIR / 'config.json'}")
         self.config.set_defaults({
             "osu_path": "",
             "main_widget_always_stay_on_top": False,
@@ -41,10 +43,10 @@ class SettingsManager(metaclass=_Singleton):
             "sliders_v2_save_fields": [[0, False], [1, True]],
         })
 
-        self.sliders_v1_config = ConfigManager(filename="settings/sliders_v1_config.json")  # stores settings info
+        self.sliders_v1_config = ConfigManager(
+            filename=f"{PathManager.SETTINGS_DIR / 'sliders_v1_config.json'}")
         self.sliders_v1_config.add_hooks(QTextEdit, (_get_TextEdit, _set_TextEdit, _event_TextEdit))
-
-        self.sliders_v2_config = ConfigManager(filename="settings/sliders_v2_config.json")  # stores settings info
+        self.sliders_v2_config = ConfigManager(filename=f"{PathManager.SETTINGS_DIR / 'sliders_v2_config.json'}")
         self.sliders_v2_config.add_hooks(QTextEdit, (_get_TextEdit, _set_TextEdit, _event_TextEdit))
 
         # Create list of them
